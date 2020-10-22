@@ -15,6 +15,9 @@ import javafx.stage.Stage;
  *
  * @author jonyv, XabiC
  */
+
+//Prueba checkOut
+
 public class Client extends Application {
     
     @Override
