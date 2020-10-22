@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author jonyv
+ * @author jonyv, XabiC
  */
 public class Client extends Application {
     
