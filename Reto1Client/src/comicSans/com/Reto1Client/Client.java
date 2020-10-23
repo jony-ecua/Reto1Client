@@ -13,21 +13,26 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author jonyv
+ * @author Nerea Aranguren
  */
 public class Client extends Application {
     
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+        //Cargar archivo fxml y lo carga
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UISignIn.fxml"));
+        Parent root = (Parent) loader.load();
         
-        Scene scene = new Scene(root);
+        //Get controller para fxml
+        UISignInController controller = ((UISignInController)loader.getController());
         
-        stage.setScene(scene);
-        stage.show();
+        controller.setStage(primaryStage);
+        //Inicializa primary stage
+        controller.initStage(root);
         
         
-        //f
+        
+        
     }
 
     /**
