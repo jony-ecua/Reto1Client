@@ -18,15 +18,20 @@ import javafx.stage.Stage;
  * @author jonyv
  */
 public class Client extends Application {
-    
+
+    /**
+     * Metodo que inicializa la vista y el controlador de Sign Up.
+     *
+     * @param stageSignUp la vista que se mostrará desde el main.
+     * @throws Exception cualquier tipo de excepción.
+     */
     @Override
     public void start(Stage stageSignUp) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("UISignUp.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("UISignUp.fxml")); --> Lo que aparece default cuando creas la clase.
 
-        
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("UISignUp.fxml"));
-        Parent root=(Parent)loader.load();
-        UISignUpController controller=((UISignUpController)loader.getController());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UISignUp.fxml"));
+        Parent root = (Parent) loader.load();
+        UISignUpController controller = ((UISignUpController) loader.getController());
         controller.setStage(stageSignUp);
         controller.initStage(root);
     }
@@ -37,5 +42,5 @@ public class Client extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

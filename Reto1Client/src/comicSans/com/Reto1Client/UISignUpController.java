@@ -17,14 +17,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-
-
 /**
  * FXML Controller class
  *
- * @author 2dam
+ * @author Cristina Milea
  */
-public class UISignUpController /*implements Initializable*/ {
+public class UISignUpController {
 
     private Stage stage;
 
@@ -68,34 +66,68 @@ public class UISignUpController /*implements Initializable*/ {
     private Label idLabelNameError;
 
     /**
-     * Initializes the controller class.
+     * Define que vista se va a mostrar cuando se ejecute la aplicación.
+     *
+     * @param stageSignUp la vista que se mostrará desde el main.
      */
-    //@Override
-    public void initialize(/*URL url, ResourceBundle rb*/) {
-        idButtonBack.setOnAction(this::handleEventAction);
-    }
-
     public void setStage(Stage stageSignUp) {
         stage = stageSignUp;
     }
 
+    /**
+     * Inicializa la vista.
+     *
+     * @param root carga todos los nodos que descienden de root.
+     */
     public void initStage(Parent root) {
         //logger.info("Initializing Sign up stage.");
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("User sign up");
+        stage.setTitle("Sign up");
         stage.setResizable(false);
         stage.setOnShowing(this::handleWindowShowing);
+
+        //idTextName.textProperty().addListener(this::textChanged); //Por qué va esto aquí?
+  
         stage.show();
     }
 
+    /**
+     * Initializes the controller class.
+     */
+    public void initialize() {
+        idButtonBack.setOnAction(this::openSignInWindow); //De donde me he sacado que esto va aqui?
+        idButtonSignUp.setOnAction(this::openMainWindow);
+        
+        
+    }
+
+    /**
+     * Inicializa el estado de la ventana.
+     *
+     * @param event determina que evento ha sucedido.
+     */
     private void handleWindowShowing(WindowEvent event) {
         //logger.info("Begginning UISignUpController::handleWindowShowing");
         idButtonSignUp.setDisable(true);
     }
 
-    private void handleEventAction(ActionEvent event) {
-        idLabelError.setText("hola");
+    /**
+     * Cierra la ventana actual y abre la ventana de Sign In.
+     *
+     * @param event determina que evento ha sucedido.
+     */
+    private void openSignInWindow(ActionEvent event) {
+        idLabelError.setText("Volviendo al Sign In..."); //Qutar más tarde
+    }
+
+    /**
+     * Cierra la ventana actual y abre la ventana de Logout (Main).
+     *
+     * @param event
+     */
+    private void openMainWindow(ActionEvent event) {
+        idLabelError.setText("Accediendo a la cuenta..."); //Qutar más tarde
     }
 }
