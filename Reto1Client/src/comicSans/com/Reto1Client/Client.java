@@ -6,6 +6,8 @@
 package comicSans.com.Reto1Client;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,15 +18,22 @@ import javafx.stage.Stage;
  * @author jonyv
  */
 public class Client extends Application {
-    
+
+    /**
+     * Metodo que inicializa la vista y el controlador de Sign Up.
+     *
+     * @param stageSignUp la vista que se mostrará desde el main.
+     * @throws Exception cualquier tipo de excepción.
+     */
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage stageSignUp) throws Exception {
+        //Parent root = FXMLLoader.load(getClass().getResource("UISignUp.fxml")); --> Lo que aparece default cuando creas la clase.
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UISignUp.fxml"));
+        Parent root = (Parent) loader.load();
+        UISignUpController controller = ((UISignUpController) loader.getController());
+        controller.setStage(stageSignUp);
+        controller.initStage(root);
     }
 
     /**
@@ -33,5 +42,5 @@ public class Client extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
