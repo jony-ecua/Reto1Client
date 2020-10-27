@@ -11,9 +11,8 @@ package comicSans.com.Reto1Client.Signable;
  */
 public class SignableFactory {
     
-    public Signable getModel(){
+    public Signable getSignable(){
         
         return new SignableImplementation();
-    }
-    
+    }    
 }

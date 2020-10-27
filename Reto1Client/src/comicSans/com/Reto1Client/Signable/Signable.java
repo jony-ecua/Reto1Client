@@ -5,10 +5,16 @@
  */
 package comicSans.com.Reto1Client.Signable;
 
+import User.User;
+
 /**
  *
  * @author xabig
  */
 interface Signable {
+    
+    public void signIn(User user);
+    public void signUp(User user);
+    public void logOut(User user);
     
 }
