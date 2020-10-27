@@ -5,12 +5,15 @@
  */
 package comicSans.com.Reto1Client.Signable;
 
-import comicSans.com.Reto1Library.MessageReto;
-import comicSans.com.Reto1Library.User;
+import Message.MessageReto;
+import User.User;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,21 +29,20 @@ public class SignableImplementation implements Signable {
 
         final String HOST = "127.0.0.1";
         final int PUERTO = 1300;
-        DataInputStream in;
-        DataOutputStream out;
+        ObjectInputStream in;
+        ObjectOutputStream out;
 
         try {
 
             Socket sc = new Socket(HOST, PUERTO);
-
-            in = new DataInputStream(sc.getInputStream());
-            out = new DataOutputStream(sc.getOutputStream());
-
+  
+            //in = new ObjectInputStream(sc.getInputStream());
+            out = new ObjectOutputStream(sc.getOutputStream());
+          
+            out.writeObject(mes);
             
-
-            String mensaje = in.readUTF();
-            System.out.println(mensaje);
-
+            out.close();
+            
             sc.close();
 
         } catch (IOException ex) {
