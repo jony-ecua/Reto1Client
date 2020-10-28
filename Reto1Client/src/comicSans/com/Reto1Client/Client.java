@@ -30,6 +30,7 @@ public class Client extends Application {
         //Inicializa primary stage
         controller.initStage(root);
         
+        //mi rama jony
         
         
         
