@@ -6,73 +6,70 @@
 package comicSans.Reto1Client;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 /**
- * FXML Controller class
- *
- * @author 2dam
+ * FXML Loug Out Controller class
+ * Defines the methods that control the performance of the window UILogOut.
+ * @author Nerea Aranguren
  */
-public class UILogOutController implements Initializable {
+public class UILogOutController {
 
     @FXML
     private Pane idPane;
     @FXML
     private Label idLabelWelcome;
     @FXML
-    private Button IdButtonLogOut;
-    
-    
+    private Button idButtonLogOut;
+   
     private Stage stage;
+  
+    /**
+     * Defines the view to show when the controller is executed.
+     * 
+     * @param secondaryStage the view sent from the class that called the method.
+     */
+    void setStage(Stage secondaryStage) {
+        stage = secondaryStage;
+    }
 
     /**
-     * Initializes the controller class.
+     * Initializes the view.
+     * 
+     * @param root Includes all the nodes.
+     * @param userName The name to be shown in the label idLabelWelcome.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        IdButtonLogOut.setOnAction(this::openSignInWindow);
-    }    
-    
-    
-    void setStage(Stage primaryStage) {
-        stage = primaryStage;
-    }
-
-    void initStage(Parent root) {
-        
-        //Create a new scene
+    void initStage(Parent root, String userName) {
+        //Creates a new scene
         Scene myScene = new Scene (root);
-        //Associate scene to primaryStage(window)
+        //Associates scene to the stage(window)
         stage.setScene(myScene);
         //Set windows properties
-        stage.setTitle("User login");
+        stage.setTitle("Log Out");
         stage.setResizable(false);
-        //Set windows event handlers
-        stage.setOnShowing(this::handleWindowShowing);
         
-        //Set control event handlers and listeners
-        //idTextUser.textProperty().addListener(this::textChanged);
+        idButtonLogOut.setOnAction(this::openSignInWindow);
+        // Includes the user login in the Welcome label
+        idLabelWelcome.setText(idLabelWelcome.getText() + ", " +userName);
+        
         stage.show();
-        
     }
     
-    private void handleWindowShowing(WindowEvent event){
-    }
-    
+    /**
+     * Loads the FXml and controller to open the Sign In window.
+     * 
+     * @param event Contains the action ejecuted on the button.
+     */
     private void openSignInWindow(ActionEvent event)  {
         try {
             // Loads the fxml archive
@@ -85,7 +82,7 @@ public class UILogOutController implements Initializable {
             //Initializes the stage
             controller.initStage(root);
         } catch (IOException ex) {
-            Logger.getLogger(UILogOutController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UILogOutController.class.getName()).log(Level.SEVERE, null, ex);//////////////////////////
         }
     }
 }

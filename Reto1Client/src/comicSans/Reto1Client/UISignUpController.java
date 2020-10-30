@@ -93,8 +93,7 @@ public class UISignUpController {
         stage.setScene(scene);
         stage.setTitle("Sign up");
         stage.setResizable(false);
-        stage.setOnShowing(this::handleWindowShowing);
-
+        idButtonBack.setOnAction(this::openSignInWindow);
         stage.show();
     }
 
@@ -102,26 +101,15 @@ public class UISignUpController {
      * Initializes the controller class.
      */
     public void initialize() {
-        idButtonBack.setOnAction(this::openSignInWindow);
         idButtonSignUp.setOnAction(this::openLogOutWindow);
-
         disableButton();
         //idTextName.textProperty().addListener(this::textChanged);
 
     }
 
-    /**
-     * Inicializa el estado de la ventana.
-     *
-     * @param event determina que evento ha sucedido.
-     */
-    private void handleWindowShowing(WindowEvent event) {
-        //logger.info("Begginning UISignUpController::handleWindowShowing");
-        //idButtonSignUp.setDisable(true);
-    }
 
     /**
-     * Cierra la ventana actual y abre la ventana de Sign In.
+     * Cierra la ventana actual y abre la ventana de Sign In (Main).
      *
      * @param event determina que evento ha sucedido.
      */
@@ -142,7 +130,7 @@ public class UISignUpController {
     }
 
     /**
-     * Cierra la ventana actual y abre la ventana de Logout (Main).
+     * Cierra la ventana actual y abre la ventana de Logout.
      *
      * @param event
      */
@@ -156,12 +144,13 @@ public class UISignUpController {
             //Sets the stage
             controller.setStage(stage);
             //Initializes the stage
-            controller.initStage(root);
+            controller.initStage(root, idTextUser.getText());
         } catch (IOException ex) {
             Logger.getLogger(UISignInController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+     
+     
     /**
      * Deshabilita el botón de Sign Up si todos los campos de texto están
      * vacíos.
@@ -185,6 +174,7 @@ public class UISignUpController {
     private void limitTextField(){
         
     }
+
     
     
 }

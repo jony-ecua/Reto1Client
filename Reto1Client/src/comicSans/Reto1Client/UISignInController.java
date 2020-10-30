@@ -61,7 +61,7 @@ public class UISignInController {
      * Initializes the controller class.
      */
     public void initialize() {
-        idButtonLogin.setOnAction(this::openLogOutWindow);
+        idButtonLogin.setOnAction(this::loginButtonPressed);
         idButtonSignUp.setOnAction(this::openSignUpWindow);
     }    
     
@@ -79,22 +79,16 @@ public class UISignInController {
         //Set windows properties
         stage.setTitle("User login");
         stage.setResizable(false);
-        //Set windows event handlers
-        stage.setOnShowing(this::handleWindowShowing);
-        
-        //Set control event handlers and listeners
-        //idTextUser.textProperty().addListener(this::textChanged);
         stage.show();
         
     }
-
-    private void handleWindowShowing(WindowEvent event){
+    
+    private void loginButtonPressed(ActionEvent event) {
+        openLogOutWindow();
     }
     
-    private void textChanged(ActionEvent event){ 
-    }
     
-    private void openLogOutWindow(ActionEvent event)  {
+    private void openLogOutWindow()  {
         try {
             // Loads the fxml archive
             FXMLLoader loader = new FXMLLoader(getClass().getResource("UILogOut.fxml"));
@@ -104,7 +98,7 @@ public class UISignInController {
             //Sets the stage
             controller.setStage(stage);
             //Initializes the stage
-            controller.initStage(root);
+            controller.initStage(root, idTextUser.getText());
         } catch (IOException ex) {
             Logger.getLogger(UISignInController.class.getName()).log(Level.SEVERE, null, ex);
         }
