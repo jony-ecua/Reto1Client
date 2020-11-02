@@ -20,10 +20,10 @@ public class Client extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Loads the fxml archive
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("UISignUp.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UISignIn.fxml"));
         Parent root = (Parent) loader.load();
         // Links the controller to the fxml
-        UISignUpController controller = ((UISignUpController)loader.getController());
+        UISignInController controller = ((UISignInController)loader.getController());
         //Sets the primary stage
         controller.setStage(primaryStage);
         //Initializes the primary stage
